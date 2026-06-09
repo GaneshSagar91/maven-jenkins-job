@@ -12,7 +12,7 @@ pipeline{
        sh '''
          mvn archetype:generate \
          -DarchetypeGroupId=org.apache.maven.archetypes \
-         - DarchetypeArtifactId=maven-archetype-quickstart \
+         -DarchetypeArtifactId=maven-archetype-quickstart \
          -DarchetypeVersion=1.5
          -DgroupId=com.simple.app
          -DartifactId=java-app
