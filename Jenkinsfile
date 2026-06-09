@@ -13,9 +13,9 @@ pipeline{
          mvn archetype:generate \
          -DarchetypeGroupId=org.apache.maven.archetypes \
          -DarchetypeArtifactId=maven-archetype-quickstart \
-         -DarchetypeVersion=1.5
-         -DgroupId=com.simple.app
-         -DartifactId=java-app
+         -DarchetypeVersion=1.5 \
+         -DgroupId=com.simple.app \
+         -DartifactId=java-app \
          -DinteractiveMode=false
        '''
        sh 'cd java-app'
