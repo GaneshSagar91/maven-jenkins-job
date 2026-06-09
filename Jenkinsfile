@@ -46,7 +46,9 @@ pipeline{
       }
     }
     stage("Run docker container"){
-      sh 'docker --rm --name java-app run java-app:local'
+      steps{
+        sh 'docker --rm --name java-app run java-app:local'
+      }
     }
   }
 }
