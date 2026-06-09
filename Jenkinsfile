@@ -41,7 +41,7 @@ pipeline{
             FROM eclipse-temurin:17-jre
             WORKDIR /app
             COPY target/java-app-1.0-SNAPSHOT.jar app.jar
-            ENTRYPOINT ["java", "-jar", "app.jar"]
+            ENTRYPOINT ["java", "-cp", "app.jar", "com.simple.app.App"]
           '''
           sh 'docker build -t java-app:local .' 
         }
