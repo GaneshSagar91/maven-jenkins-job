@@ -17,33 +17,34 @@ pipeline{
          -DgroupId=com.simple.app \
          -DartifactId=java-app \
          -DinteractiveMode=false
+         pwd
        '''
-       sh 'pwd'
       }
     }
     stage("Build artifact"){
       steps{
-        sh 'cd java-app'
-        sh 'mvn -B -DskipTests clean package'
+        sh 'pwd && cd java-app && mvn -B -DskipTests clean package'
       }
     }
     stage("Build docker image"){
       steps{
-        sh '''
-          cat > .dockerignore << 'EOF'
-          .git*
-          target/*
-          !target/java-app-1.0-SNAPSHOT.jar
-          EOF
-        '''
-        sh '''
-          cat > Dockerfile << 'EOF'
-          FROM eclipse-temurin:17-jre
-          WORKDIR /app
-          COPY target/java-app-1.0-SNAPSHOT.jar app.jar
-          ENTRYPOINT ['java', '-jar', 'app.jar']
-        '''
-        sh 'docker build -t java-app:local .'
+        dir('java-app'){
+           sh '''
+            cat > .dockerignore << 'EOF'
+            .git*
+            target/*
+            !target/java-app-1.0-SNAPSHOT.jar
+            EOF
+          '''
+          sh '''
+            cat > Dockerfile << 'EOF'
+            FROM eclipse-temurin:17-jre
+            WORKDIR /app
+            COPY target/java-app-1.0-SNAPSHOT.jar app.jar
+            ENTRYPOINT ["java", "-jar", "app.jar"]
+          '''
+          sh 'docker build -t java-app:local .' 
+        }
       }
     }
     stage("Run docker container"){
