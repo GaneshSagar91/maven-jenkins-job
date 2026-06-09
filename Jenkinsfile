@@ -18,11 +18,12 @@ pipeline{
          -DartifactId=java-app \
          -DinteractiveMode=false
        '''
-       sh 'cd java-app'
+       sh 'pwd'
       }
     }
     stage("Build artifact"){
       steps{
+        sh 'cd java-app'
         sh 'mvn -B -DskipTests clean package'
       }
     }
