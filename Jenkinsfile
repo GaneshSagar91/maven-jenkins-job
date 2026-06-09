@@ -4,7 +4,7 @@ pipeline{
   stages{
     stage("Install maven"){
       steps{
-        sh 'sudo apt update && sudo apt instal maven -y'
+        sh 'apt update && sudo apt instal maven -y'
       }
     }
     stage("Generate java starter template"){
