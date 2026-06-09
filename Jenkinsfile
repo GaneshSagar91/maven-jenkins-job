@@ -2,11 +2,11 @@ pipeline{
   agent any
 
   stages{
-    stage("Install maven"){
-      steps{
-        sh 'apt update && sudo apt instal maven -y'
-      }
-    }
+    // stage("Install maven"){
+    //   steps{
+    //     sh 'apt update && sudo apt instal maven -y'
+    //   }
+    // }
     stage("Generate java starter template"){
       steps{
        sh '''
